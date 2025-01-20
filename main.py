@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
-import sys
+import sys      
 
 class MainWindow(QMainWindow):
     def __init__(self, *args, **kwargs):
@@ -24,7 +24,7 @@ class MainWindow(QMainWindow):
             "background : white"
             "}"
         )
-        self.label.setAlignment(Qt.AlignRight)
+        self.label.setAlignment(Qt.AlignLeft)
         self.label.setFont(QFont('Times New Roman', 15))
 
         #buttons
@@ -42,9 +42,26 @@ class MainWindow(QMainWindow):
         button_effect.setColor(Qt.red)
         delete_task.setGraphicsEffect(button_effect)
 
+        #top window
+        self.new_window = None
+
+        #adding actions to button
+        add_task.clicked.connect(self.add_window)
+        edit_task.clicked.connect(self.edit_window)
+        delete_task.clicked.connect(self.delete_window)
+
+    #functions for actions
+    def add_window(self):
+        text, ok = QInputDialog.getText(self, "Input Dialog", "Enter your task:")
+        if ok:
+            self.label.setText(f"Task 1: {text}")
+            
+    def edit_window(self):
+        pass
+    def delete_window(self):
+        pass
         
 app = QApplication(sys.argv)
-
 window = MainWindow()
 window.show()
 
