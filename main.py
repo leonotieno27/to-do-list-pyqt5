@@ -54,7 +54,6 @@ class MainWindow(QMainWindow):
         if ok:
             position = len(task_dict) + 1
             task_dict[position] = text
-            print(task_dict)
 
             self.list_widget.clear()
             for pos, task in task_dict.items():
