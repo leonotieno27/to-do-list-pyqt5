@@ -2,7 +2,8 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
-import sys      
+import sys  
+task_dict = {}    
 
 class MainWindow(QMainWindow):
     def __init__(self, *args, **kwargs):
@@ -54,8 +55,16 @@ class MainWindow(QMainWindow):
     def add_window(self):
         text, ok = QInputDialog.getText(self, "Input Dialog", "Enter your task:")
         if ok:
-            self.label.setText(f"Task 1: {text}")
-            
+            position = len(task_dict) + 1
+            task_dict[position] = text
+            print(task_dict)
+
+            all_tasks = ""
+            for pos, task in task_dict.items():
+                 all_tasks += f"Task {pos}: {task}\n"
+
+            self.label.setText(all_tasks)
+              
     def edit_window(self):
         pass
     def delete_window(self):
